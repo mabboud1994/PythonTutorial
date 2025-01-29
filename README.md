@@ -3,6 +3,7 @@
 2. Solution2: You can alternatively go to relases to choose and download the realase you need : [releases](https://github.com/mabboud1994/PythonTutorial/releases)
 
 ## This Selected Pyton Tutorial Release Concerns: `Python Data Types and Variables declaration`
+# You can find th tutorial video here: [Video: Python Data Types And Variables Declaration](https://1drv.ms/v/c/b2ea02a3d09e5b20/EQZMPGSTcGpLq0RL43ZOHSkBR2Rfn1YcPK8BDYsdkmRoew)
 
 ### How to download an run the project
 
