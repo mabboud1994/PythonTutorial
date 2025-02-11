@@ -1,180 +1,88 @@
-"""        Data Manipulation: Numbers and Strings              """
+# Creating a Dictionary
+my_dict = {"name": "mahmoud", "age": 31, "city": "Rennes"}
+print(my_dict)
+ # Accessing Values
+name = my_dict["name"] # You can access the values using the keys, raises an exception if key does not exist
+
+name = my_dict.get("test") # same, but if key does not exist, then it returns None instead of raising an exeception
+print(name)
+
+#Adding or Updating Keys and Values
+my_dict["skill"] = 10 # if key does not exist, the key value pair will be added
+print(my_dict)
+
+my_dict["skill"] = 15 # if key exists, then the value will be updated.
+print(my_dict)
+
+# Deleting Keys
+
+del my_dict["skill"] # direct access to key in my_dict (no copy modified)
+print(my_dict)
+
+updated_dict = my_dict.pop("name") # same direct access, but it returns the value of the deleted key
+print(updated_dict)
+print(my_dict)
+
+my_dict.popitem() # removes last item
+print(my_dict)
+
+# Getting Keys, Values, and Items
+myKeys = my_dict.keys() # return a dict_keys type which can be casted to list
+print(list(myKeys)) # cast to list
+
+myValue = my_dict.values() # return a dict_values type which can be casted to list
+print(list(myValue)) # cast to list
+
+# get items
+items = my_dict.items() # can be casted to list
+myListofItems = list(items) # cast to list
+print(myListofItems) # is a list of tuple
+print(type(myListofItems[0]))
+print(myListofItems[0][0]) # first element of list -> first element of tuple
+
+# Dictionaries can also contain other dictionaries or lists.
+
+person = {
+    "name": "Alice",
+    "contacts": {
+        "email": "example.com",
+        "phone": "075646464",
+        "address": {
+            "rue": "8 sq",
+            "postal Code": 35000
+        }
+    },
+    "lastSeen": [10,15,20]
+}
+# Accessing nested dictionary values
+print(person["contacts"]["email"])
+print(person["contacts"]["address"]["rue"])
+print(person["lastSeen"][0]) # first item of list
+
+#Merging Two Dictionaries
+
+dict1 = {'a': 1, 'b': 2}
+dict2 = {'b': 3, 'c': 4}
+#dict1.update(dict2) # Using update method
+#print(dict1)
+
+# Using ** unpacking operator
+
+merged_dict = {**dict1, **dict2}
+print(merged_dict)  # Output: {'a': 1, 'b': 3, 'c': 4}
 
 
-"""
-Python Arithmetic Operators
-Arithmetic operators are used with numeric values to perform common mathematical operations
 
-Syn Name        Example
+# Copying a Dictionary
 
-+	Addition	x + y	
--	Subtraction	x - y	
-*	Multiplication	x * y	
-/	Division	x / y	
-%	Modulus	x % y	
-**	Exponentiation	x ** y	
-//	Floor division	x // y
+new_dict = my_dict.copy()
+print(new_dict)
 
-"""
-a = 1 + 2 # the value of a is 3
-a = 1*2 # the value of a is 2
-a = 1/2 # the value of a is 0.5
-a = 1%2 # the value of a is 1
-a = 4%2 # the value of a is 0
-a = 2**2 # the value of a is 4
-a = 7 // 2 # the value of a is 3 (same as int(7/2))
+#Clearing a Dictionary
+my_dict.clear()
+print(my_dict)  # Output: {}
 
-
-"""
-Python Assignment Operators
-Operator Example  Same As
-=	x = 5	x = 5	
-+=	x += 3	x = x + 3	
--=	x -= 3	x = x - 3	
-*=	x *= 3	x = x * 3	
-/=	x /= 3	x = x / 3	
-%=	x %= 3	x = x % 3
-
-"""
-a = 1
-a += 1 # a is 2
-a-=1 # a is 1
-a *= 2 # a is 2
-a /=  2 # a is 1
-a %=2 # a is 1
-
-# PEMDAS: https://en.wikipedia.org/wiki/Order_of_operations#:~:text=The%20acronym%20PEMDAS%2C%20which%20stands,Excuse%20My%20Dear%20Aunt%20Sally%22
-a = 4/2 + 5**2/3 # value is : 10.333333333333334, if the expression does not contain (), python treats the expression as defined in PEMDAS rules
-a = (4/2) + 5**(2/3) # value is: 4.924017738212866, the priority is for ()
-
-
-# You can join two or more strings together using the + operator.
-
-string1 = "hello "
-string2 = "world "
-string3 = ", iam here"
-result = string1 + string2 + string3
-#result = "ddd" + "sss" + "vvv" # alternative implementation
-print(result)
-
-#You can repeat a string multiple times using the * operator.
-result = result*3
-#result = "my string"*3 # alternative implementation
-print(result)
-
-# Strings can be sliced using indexing (see StringIndexing.png), allowing you to extract a portion of a string
-String = "Hello, world"
-Substring = String[7:] # no input on the right of : means that the slicing must go to the end of string
-Substring = String[7:12] # here the substring goes from index 7 to 12 excluded
-print(Substring)
-
-#upper() converts all characters to uppercase.
-String = "hello,-"
-result = String.upper() # special characters are ignored
-print(result)
-
-#lower() converts all characters to lowercase.
-String = "HeLlo,-"
-result = String.lower() # special characters are ignored
-print(result)
-
-#capitalize() capitalizes the first character.
-String = "hello world"
-result = String.capitalize()
-print(result)
-
-#title() capitalizes the first letter of each word.
-String = "hello world"
-result = String.title()
-print(result)
-
-#swapcase() swaps the case of all characters.
-String = "HeLlo World"
-result = String.swapcase()
-print(result)
-
-#strip() removes leading and trailing whitespace from a string.
-String = "   hello world   "
-result = String.strip()
-print(result)
-
-# lstrip() removes leading whitespace.
-String = "   hello world   "
-result = String.lstrip()
-print(result)
-
-#rstrip() removes trailing whitespace.
-String = "   hello world   "
-result = String.rstrip()
-print(result)
-
-#The len() function gives the length of a string.
-String = "hello"
-result = len(String)
-print(result)
-
-#find() returns the index of the first occurrence of a substring (returns -1 if not found).
-String = "hello world world"
-result = String.find("world")
-result = String.find("world", 0,5) # if starts and end indices are specified, then the find processes the search on this piece of string only
-print(result)
-
-#rfind() returns the index of the last occurrence of a substring.
-String = "hello world world"
-result = String.rfind("world") # can take also start and end indices
-print(result)
-
-# replace() replaces a substring with another substring.
-String = "hello world"
-result = String.replace("world", "There") # replace first occurence only
-print(result)
-
-String = "hello world world"
-result = String.replace("world", "There")
-print(result)
-
-String = "hello world world world"
-result = String.replace("world", "There", 2) # replace the first 2 occurences
-print(result)
-
-"""  To explain next session: i put them here to make a full release on github """
-
-# split() divides a string into a list of substrings based on a delimiter.
-string = "apple,banana,cherry"
-result = string.split(",")  # Output is a list: ['apple', 'banana', 'cherry']
-
-#splitlines() splits a string into a list at line breaks.
-string = "Hello\nWorld" # \n in string mean that there is a break line here
-result = string.splitlines()  # Output: ['Hello', 'World']
-
-#join() combines a list of strings into a single string using a delimiter.
-fruits = ["apple", "banana", "cherry"] # a list of string
-result = ", ".join(fruits)  # Output is a string: "apple, banana, cherry"
-
-#startswith() checks if the string starts with a certain substring.
-string = "Hello, World!"
-result = string.startswith("Hello")  # Output is a bool: True
-
-#endswith() checks if the string ends with a certain substring.
-string = "Hello, World!"
-result = string.endswith("World!")  # Output is a bool: True
-
-#isalpha() checks if all characters are alphabetic.
-string = "Hello"
-result = string.isalpha()  # Output is a bool: True
-
-#isdigit() checks if all characters are digits.(numbers)
-string = "12345"
-result = string.isdigit()  # Output is bool: True
-
-# Formatting Strings
-#Using f-strings (Python 3.6+):
-name = "Alice"
-age = 30
-result = f"Name: {name}, Age: {age}"  # Output: "Name: Alice, Age: 30"
-#Using format() method:
-result = "Hello, {}!".format("Alice")  # Output: "Hello, Alice!"
-
-#Escaping Characters
-#You can escape special characters using a backslash (\).
-string = "He said, \"Hello!\""  # Output: He said, "Hello!" # note that this is the only way to define a " or ' into a string as characters of string
+# create a dictionnary from string
+new_dict = my_dict.fromkeys("mahmoud")
+new_dict["m"] = 10
+print(new_dict)
