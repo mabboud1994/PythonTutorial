@@ -2,8 +2,8 @@
 1. Solution1: click on the drop down list in the top left corner of this page (on the left of branch), then choose your Tutotrial release.
 2. Solution2: You can alternatively go to relases to choose and download the realase you need : [releases](https://github.com/mabboud1994/PythonTutorial/releases)
 
-## This Selected Pyton Tutorial Release Concerns: `Python Data Manipulation: Dictionary`
-# You can find the tutorial video here: [Video: Python Data Manipulation: Dictionary](https://1drv.ms/v/c/b2ea02a3d09e5b20/EVrsrh1yGwpLofF9OJr9hrAB7ehCeLnLmG43SdHkLq3MZw)
+## This Selected Pyton Tutorial Release Concerns: `Python Data Manipulation: Sequence`
+# You can find the tutorial video here: [Video: Python Data Manipulation: Sequence](https://1drv.ms/v/c/b2ea02a3d09e5b20/ERYMIzspYi5Ejz6DSoE1vuoBX9h2AC_2bfPeAfgRIgeYZA?e=DugCYy)
 
 ### How to download an run the project
 
