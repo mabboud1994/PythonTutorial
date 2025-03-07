@@ -1,271 +1,181 @@
-"""  List """
-
-#append(): Adds an element to the end of the list.
-my_list = [1,2,3]
-my_list.append(4) # adds 4 at the end
-print(my_list)
-
-#insert(): Adds an element at a specific position (index).
-my_list = ["a","b","c"]
-my_list.insert(1, "d")
-print(my_list)
-
-#extend(): Adds elements from another iterable (like another list) to the end.
-my_list = ["a","b","c"]
-my_list.extend(["d", "e"])
-print(my_list)
-
-#remove(): Removes the first occurrence of a specific value.
-my_list = ["a","b","c", "c", "c"]
-my_list.remove("c")
-print(my_list)
-
-#pop(): Removes and returns an element at a given index (default is the last element).
-my_list = ["a","b","c", "c", "c"]
-my_removed_elem = my_list.pop(1)
-print(my_removed_elem)
-print(my_list)
-
-my_list = ["a","b","c", "c", "c"]
-my_removed_elem = my_list.pop()
-print(my_removed_elem)
-print(my_list)
-
-#del: Deletes an element or the whole list.
-my_list = ["a","b","c", "c", "c"]
-del my_list[1] # removes elem at index 1
-print(my_list)
-del my_list # removes the whole list (del removes also the variable from memory)
-
-#clear(): Removes all elements from the list.
-my_list = ["a","b","c", "c", "c"] # clear does not delete the reference of the variable
-my_list.clear()
-print(my_list)
-
-#sort(): Sorts the list in-place (modifies the list).
-my_list = [3,1,4,2]
-my_list.sort() # Sorts in ascending order
-print(my_list)
-
-my_list = ["c", "c", "c", "z", "a"]
-my_list.sort() # Sorts in ascending alphabetic order
-print(my_list)
-
-my_list = ["c", "c", "c", "z", "a", 5,4]
-#my_list.sort() # it raises an exception: not supported between instances of 'int' and 'str'
-#print(my_list)
-
-#sorted(): Returns a sorted copy of the list without modifying the original.
-my_list = [3,1,4,2]
-my_new_list = sorted(my_list) #  Returns a new sorted list
-print(my_list)
-print(my_new_list)
-
-#Get a sublist from index start to end-1:
-my_list = ["c", "c", "c", "z", "a", 5,4]
-sublist = my_list[0:4] # right index is excluded
-print(sublist)
-sublist = my_list[:] # copy of the whole list
-print(sublist)
-
-#reverse(): Reverses the list in-place
-my_list = [2,1,3, 4, 5]
-my_list.reverse()
-print(my_list)
-
-# count() return num of occurences of an item in a list
-my_list = [1, 2, 3, 4, 5, 5,5]
-print(my_list.count(5))
-
-my_list = [1, 2, 3, 4, 5, 5,5]
-print(my_list.index(5))
-
-# copy() a lsit to another list
-mycopiedList =  my_list.copy()
-print(mycopiedList)
-
-# List comprehensions allow you to create lists using a concise and readable syntax.
-
-my_list = [1, 2, 3, 4]
-
-squared_list = [x**2 for x in my_list]
-print(squared_list)
-# the same
-squared_list = []
-for i in my_list:
-    squared_list.append(i**2)
-print(squared_list)
-
-my_list = [x for x in range(20,101)]
-print(my_list)
-
-# Concatenation of two or many lists
-my_list1 = [1, 2, 3, 4]
-my_list2 = [5, 6, 7, 8]
-
-myresult = my_list1 + my_list2
-print(myresult)
-
-"""  Sets """
-#Creating a Set:
-my_set = {1, 2, 3, 4} # declaration
-my_set = set([1, 2, 3, 4]) # same
-
-#Adding Elements: You can use the add() method to add a single element.
-my_set.add(5)
-my_set.add(5) # this will be ignored because 5 is already added by previous statement
-print(my_set)
-
-#Removing Elements: You can use remove() or discard(). remove() raises an error if the element is not found, while discard() doesn’t.
-
-my_set.remove(4)  # Removes 4
-my_set.discard(6)  # No error, since 6 is not in the set
-print(my_set)
-
-#Union: Combine two sets.
-set1 = {1, 2, 3}
-set2 = {3, 4, 5}
-union_set = set1 | set2  # or set1.union(set2)
-print(union_set)  # Output: {1, 2, 3, 4, 5}
-
-#Intersection: Get elements common to both sets.
-set1 = {1, 2, 3, 4}
-set2 = {3, 4, 5}
-intersection_set = set1 & set2
-print(intersection_set)
-
-#Difference: Get elements in set1 but not in set2.
-set1 = {1, 2, 3}
-set2 = {3, 4, 5}
-difference_set = set1 - set2
-print(difference_set) 
-
-#Symmetric Difference: Get elements that are in either set1 or set2, but not both.
-set1 = {1, 2, 3}
-set2 = {3, 4, 5}
-sym_diff_set = set1 ^ set2  # or set1.symmetric_difference(set2)
-print(sym_diff_set)  # Output: {1, 2, 4, 5}
-
-#Creating a Frozenset:
-my_frozenset = frozenset([1, 2, 3, 4])
-print(my_frozenset)  # Output: frozenset({1, 2, 3, 4})
-#No Adding or Removing: You cannot add or remove elements after the frozenset is created.
-#my_frozenset.add(5) # will raise an exception
-
-#Use in a Set or Dictionary: Because frozensets are immutable, they can be used as elements in a set or as keys in a dictionary.
-dictionary = {frozenset([1, 2]): "value"}
-print(dictionary)
-
-"""   Exercise   """
+"""
+In Python, conditions are used to execute specific blocks of code based on whether a given condition is True or False. This allows us to control the flow of a program based on logic and comparisons.
 
 """
-On a un website (API), qui possède une methode qui nous retourne les données des utilisateurs
-authentifé et qui sont sotqué dans la base de données. un utilisateur est representé par 
-son prenom, nom, adress, last connection, inventory
+"""  
+In Python, we use comparison operators to compare values. These operators return True or False based on the comparison.
 
-un user est representé par un dict:
-
-le prenom, nom sont des string.
-l'adress est un dict qui contient le mail, le numéro de rue, le code postal.
-la last connection est une string.
-l'inventory est un dict qui contient: le nombre de skins, le nom de companion, la liste des armes
-
-on a fait un appel à cet API et il nous a retourné une liste de 3 users.
-
-1- créer une list qui s'appel Users_list qui est empty à la déclaration
-2- créer les dictUser1, dictUser2 et dictUser3 qui sont vide à la déclaration et qui representent conséquetivement ces 3 users.
-3- definir 6 strings: (PrenomUser1, nomUser1, prenomUser2 etc..) donner ce qui tu veux comme valeurs 
-4- definir 3 dicts: adreesUser1, adressUser2, adressUser3 (donner des valeurx aux clés (mail, numéro de rue, code postal)) 
-5- Créer les strings lastConnectionUser1, lastConnectionUser2 et lastConnectionUser3, donne les valeurs qui te conviennent
-6- créer le dict inventory pour chaque user: InvDict1, InvDict2, InvDict3 (vide à la déclaration)
-7- créer les 3 listes des armes pour chaque user: armesListUser1, armesListUser2, armesListUser3 vide à la déclaration
-8- créer les 6 variables: nbSkinsUser1, NameCompanionUser1, nbSkinsUser2 etc.. donner ce qui tu veux comme valeurs 
-7- le user1 possède comme armes: m416 et m16, le user 2 possède: p90 et le user 3 possède: awm  et m24. utiliser la syntaxe qui sert à ajouter ces elements aux listes des armes
-8- utiliser la syntaxe qui sert à ajouter les key value pairs pour le prenom, nom et last connection pour chaque user dict
-9- utiliser la syntaxe qui sert à ajouter les key value pairs pour le nombre de skins, le nom de companion et la liste des armes  pour chaque user inv dict.
-10- utiliser la syntaxe qui sert à ajouter les key value pairs pour l'inventory, pour chaque user dict.
-11- utiliser la syntaxe qui sert à ajouter les 3 user dicts à la liste Users_list
-12- utiliser la fonction print pour afficher la liste Users_list
-13- utiliser la syntaxe qui sert à obtenir la liste des armes du premier element de la liste Users_list, (stocker cet element dans une variable nommé outputList) 
-14- utiliser la syntaxe qui sert à obtenir le premier element de la liste outputList (stocker cet element dans une variable nommé firstElem) 
-15- utiliser la syntaxe qui sert à covertir le contenu de firstElem en uppercase
-16- on veut formatter l'output pour bien afficher la Users_list. defenir une string qui formatté qui possède la valeur suivante: la liste de users list est: <ici la valeur de Users_list>
-17- utiliser print pour l'afficher.
-
-
+==: Equal to
+!=: Not equal to
+>: Greater than
+<: Less than
+>=: Greater than or equal to
+<=: Less than or equal to
 """
-Users_list = []
-dictUser1 = {}
-dictUser2 = {}
-dictUser3 = {}
-PrenomUser1 = "mahmoud"
-nomUser1 = "abboud"
-PrenomUser2 = "ahmad"
-nomUser2 = "abboud"
-PrenomUser3 = "khaled"
-nomUser3 = "abboud"
+a = 5
+b = 10
 
-adreesUser1 = {"mail": "test", "numéro de rue": 5, "code postal":35200}
-adreesUser2 = {"mail": "test", "numéro de rue": 5, "code postal":35200}
-adreesUser3 = {"mail": "test", "numéro de rue": 5, "code postal":35200}
+c = a < b # c is a boolean
+print(c)
+print(type(c))
 
-lastConnectionUser1 = "dfdf"
-lastConnectionUser2 = "dfdf"
-lastConnectionUser3 = "dfdf"
+d = a > b 
+print(d)
+e = b > a
+print(e)
 
-InvDict1 = {}
-InvDict2 = {}
-InvDict3 = {}
+a = 10
+b = 10
 
-armesListUser1 = []
-armesListUser2 = []
-armesListUser3 = []
+c = a == b
+print(c)
 
-nbSkinsUser1 = 10
-NameCompanionUser1 = "sdsd"
-nbSkinsUser2 = 10
-NameCompanionUser2 = "sdsd"
-nbSkinsUser3 = 10
-NameCompanionUser3 = "sdsd"
+d = a >= b
+print(d)
 
-armesListUser1.append("m416")
-armesListUser1.append("m16")
+e = a > b
+print(e)
 
-armesListUser2.append("p90")
+f = a <= b
+print(f)
 
-armesListUser3.append("awm")
-armesListUser3.append("m24")
+g = a < b
+print(g)
 
-dictUser1["nom"] = nomUser1
-dictUser1["prenom"] = PrenomUser1
-dictUser1["last connection"] = lastConnectionUser1
+a = 10
+b = 100
 
-dictUser2["nom"] = nomUser2
-dictUser2["prenom"] = PrenomUser2
-dictUser2["last connection"] = lastConnectionUser2
+c = a != b
+print(c)
 
-dictUser3["nom"] = nomUser3
-dictUser3["prenom"] = PrenomUser3
-dictUser3["last connection"] = lastConnectionUser3
+a = 100
+b = 100
+c = a != b
+print(c)
 
-InvDict1["nbSkins"] = nbSkinsUser1
-InvDict1["nameCompanion"] = NameCompanionUser1
-InvDict1["armes"] = armesListUser1
 
-InvDict2["nbSkins"] = nbSkinsUser2
-InvDict2["nameCompanion"] = NameCompanionUser2
-InvDict2["armes"] = armesListUser2
+""" 
+Logical operators combine multiple conditions:
 
-InvDict3["nbSkins"] = nbSkinsUser3
-InvDict3["nameCompanion"] = NameCompanionUser3
-InvDict3["armes"] = armesListUser3
+and: Returns True if both conditions are true.
+or: Returns True if at least one condition is true.
+not: Reverses the logical state of its operand.
+"""
+c = 8
 
-dictUser1["inventory"] = InvDict1
-dictUser2["inventory"] = InvDict2
-dictUser3["inventory"] = InvDict3
+condition1 = c > 5
+condtion2 = c < 10
+isBetween5_10 = condition1 and condtion2
+print(isBetween5_10)
 
-Users_list.append(dictUser1)
-Users_list.append(dictUser2)
-Users_list.append(dictUser3)
+c = 50
 
-print(Users_list)
+condtion1 = c < 30
+condtion2 = c < 60
+result = condtion1 or condtion2
+print(result)
+
+c = 50
+
+condtion1 = c < 30
+condtion2 = c < 60
+result = condtion1 and condtion2
+print(result)
+
+c = 50
+
+condtion1 = c < 100
+result = not condtion1 # inverse condition
+print(result)
+
+a = None # check None Value
+c = a is not None # is used for None Values
+print(c)
+
+a = 10 # check None Value
+c = a is not None # is used for None Values
+print(c)
+
+c = 14
+
+condition = c > 10 and c < 20 and c > 12  and c < 15
+
+print(condition)
+
+c = 15
+
+condition = c > 10 and c < 20 or  c > 50  and c < 100
+#condition = (c > 10 and c < 20) or  (c > 50  and c < 100) # the same
+print(condition)
+
+condition = 10 < 20 or (20 > 10 or 50 < 100) and 100 < 1000 # () has the highest priority
+
+""" The if statement allows us to check whether a condition is true or false and execute code accordingly. """
+a = 10
+if a < 20:
+    print("a is less than 20") # this line will be executed since 10 < 20
+print("suite du code")
+
+""" The else statement is used to specify a block of code to run when the if condition is not true. """
+
+ennemies = 10
+if ennemies <= 1:
+    print("take risk")
+else:
+    print("revive")
+
+"""The elif (else if) statement allows us to check multiple conditions. It's useful when you want to check more than two conditions."""
+
+a = 10
+if a == 2:
+    print('is 2')
+elif a == 3:
+    print('is 3')
+elif a == 4:
+    print("is 4")
+else:
+    print("other")
+
+a = 12
+if a > 10 and a < 20:
+    print("a is > 10 and < 20")
+else:
+    print('not in')
+
+if 10 < a < 20: # the same as above
+    print("a is between 10 and 20")
+
+liste = [1,2,3,4,5]
+
+if 3 in liste:
+    print('3 in liste')
+
+if 10 not in liste:
+    print('10 not in liste')
+
+if True:
+    print("is true")
+
+mylist = [1,2]
+if mylist: # check if the list is not empty
+    print("list is not empty")
+
+mydict = {"key1": 10, "key2": 20}
+
+if mydict:
+    print("my dict is not empty")
+
+if "key1" in mydict.keys(): # check if a key exists
+    print("key 1 exists")
+
+if 10 in mydict.values(): # check if a value exists
+    print("10 exists")
+
+# nested if, you can define multiples if inside if block
+a = 10
+if a < 20:
+    if a < 15:
+        if a < 12:
+            print(a)
+        else:
+            print('else')
