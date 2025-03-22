@@ -1,181 +1,124 @@
-"""
-In Python, conditions are used to execute specific blocks of code based on whether a given condition is True or False. This allows us to control the flow of a program based on logic and comparisons.
+
+# to manipulate time we need to import built-in librairies
+from datetime import datetime, timedelta
+import time
 
 """
-"""  
-In Python, we use comparison operators to compare values. These operators return True or False based on the comparison.
+1. Introduction to Loops
+Python loops repeat code blocks.
+Two types: for and while.
 
-==: Equal to
-!=: Not equal to
->: Greater than
-<: Less than
->=: Greater than or equal to
-<=: Less than or equal to
 """
-a = 5
-b = 10
+# loop through a list
+names = ["tom", "jerry", "spike"]
 
-c = a < b # c is a boolean
-print(c)
-print(type(c))
+for name in names:
+    print(name)
 
-d = a > b 
-print(d)
-e = b > a
-print(e)
+print("main code")
 
-a = 10
-b = 10
+# loop using range
+for i in range(10,101):
+    print(i)
 
-c = a == b
-print(c)
+# while loop is conditionned
+i = 2
+while i <= 20:
+    print(i)
+    i = i+2
 
-d = a >= b
-print(d)
+# break is used to exit a loop
+for i in range(0,101):
+    if i == 5:
+        break
+    print(i)
+# continue is used to skip an iteration
+print("====================================")
+for i in range(0,11):
+    if i == 5:
+        continue
+    print(i)
+# print only pair numbers between 0-10
+print("====================================")
+for i in range(0,11):
+    if i % 2 == 1:
+        continue
+    print(i)
 
-e = a > b
-print(e)
+# pass is used to do nothing
+print("====================================")
+for i in range(0,11):
+    if i % 2 == 1:
+        pass
+    else:
+        print(i)
+print("====================================")
+# Nested loops
 
-f = a <= b
-print(f)
+for x in range (2):
+    for y in range(3):
+        print(f"x={x}, y={y}")
 
-g = a < b
-print(g)
+print("====================================")
+data = [[1,5],[2,7],[3,3]]
 
-a = 10
-b = 100
+for elem in data:
+    for xy in elem:
+        print(xy)
+print("====================================")
 
-c = a != b
-print(c)
+i = 0
+x = 0
+while i < 5:
+    print(f"i is {i}")
+    while x < 10:
+        print(f"x is {x}")
+        x = x+1
+    i += 1
+print("====================================")
+startdate = datetime.now()
+while True:
+    current_time_str = datetime.now().strftime("%H:%M:%S") # get the current time then convert it to string
+    print(current_time_str)
+    time.sleep(1) # wait 1 second
+    if datetime.now() - startdate >= timedelta(seconds=10): # if delta time is greater than or equal to 10 seconds
+        break # exit while loop
 
-a = 100
-b = 100
-c = a != b
-print(c)
+# looping over Dictionaries
 
+person = {"name": "Sam", "age": 30}
 
-""" 
-Logical operators combine multiple conditions:
+for key,value in person.items():
+    print(key, "=>", value)
 
-and: Returns True if both conditions are true.
-or: Returns True if at least one condition is true.
-not: Reverses the logical state of its operand.
+for key in person.keys():
+    print(key, "=>",person[key])
+
+# looping over strings
+
+mystring = "Hello World !"
+newstring = ""
+for char in mystring:
+    if char == "l":
+        newstring += "m"
+    else:
+        newstring += char
+print(newstring)
+print("====================================")
 """
-c = 8
+Problem:
+Print numbers from 1 to 20.
+Print "Fizz" for multiples of 3.
+Print "Buzz" for multiples of 5.
+Print "FizzBuzz" for multiples of both.
 
-condition1 = c > 5
-condtion2 = c < 10
-isBetween5_10 = condition1 and condtion2
-print(isBetween5_10)
-
-c = 50
-
-condtion1 = c < 30
-condtion2 = c < 60
-result = condtion1 or condtion2
-print(result)
-
-c = 50
-
-condtion1 = c < 30
-condtion2 = c < 60
-result = condtion1 and condtion2
-print(result)
-
-c = 50
-
-condtion1 = c < 100
-result = not condtion1 # inverse condition
-print(result)
-
-a = None # check None Value
-c = a is not None # is used for None Values
-print(c)
-
-a = 10 # check None Value
-c = a is not None # is used for None Values
-print(c)
-
-c = 14
-
-condition = c > 10 and c < 20 and c > 12  and c < 15
-
-print(condition)
-
-c = 15
-
-condition = c > 10 and c < 20 or  c > 50  and c < 100
-#condition = (c > 10 and c < 20) or  (c > 50  and c < 100) # the same
-print(condition)
-
-condition = 10 < 20 or (20 > 10 or 50 < 100) and 100 < 1000 # () has the highest priority
-
-""" The if statement allows us to check whether a condition is true or false and execute code accordingly. """
-a = 10
-if a < 20:
-    print("a is less than 20") # this line will be executed since 10 < 20
-print("suite du code")
-
-""" The else statement is used to specify a block of code to run when the if condition is not true. """
-
-ennemies = 10
-if ennemies <= 1:
-    print("take risk")
-else:
-    print("revive")
-
-"""The elif (else if) statement allows us to check multiple conditions. It's useful when you want to check more than two conditions."""
-
-a = 10
-if a == 2:
-    print('is 2')
-elif a == 3:
-    print('is 3')
-elif a == 4:
-    print("is 4")
-else:
-    print("other")
-
-a = 12
-if a > 10 and a < 20:
-    print("a is > 10 and < 20")
-else:
-    print('not in')
-
-if 10 < a < 20: # the same as above
-    print("a is between 10 and 20")
-
-liste = [1,2,3,4,5]
-
-if 3 in liste:
-    print('3 in liste')
-
-if 10 not in liste:
-    print('10 not in liste')
-
-if True:
-    print("is true")
-
-mylist = [1,2]
-if mylist: # check if the list is not empty
-    print("list is not empty")
-
-mydict = {"key1": 10, "key2": 20}
-
-if mydict:
-    print("my dict is not empty")
-
-if "key1" in mydict.keys(): # check if a key exists
-    print("key 1 exists")
-
-if 10 in mydict.values(): # check if a value exists
-    print("10 exists")
-
-# nested if, you can define multiples if inside if block
-a = 10
-if a < 20:
-    if a < 15:
-        if a < 12:
-            print(a)
-        else:
-            print('else')
+"""
+for i in range(1,21):
+    if i % 3 == 0 and i % 5 == 0:
+        print("FizzBuzz")
+    elif i%3 == 0:
+        print("Fizz")
+    elif i%5 == 0:
+        print("Buzz")
+    else:
+        print(i)
