@@ -1,84 +1,123 @@
-## A function is a block of organized, reusable code that performs a single, related action. It helps reduce repetition and make code easier to manage and debug.
-
-""" def function_name ():
-        logic
 """
-def greet():
-    print("Hello world")
+Loads daily temperature data from a JSON file.
 
-greet() # call the function greet
+Computes the average temperature per month for each city using NumPy.
+
+Plots the monthly averages for each city using Matplotlib.
+Show a bar chart (histogram) with:
+
+    X-axis: Months
+
+    Y-axis: Temperature delta (°C)
+
+    Bars representing the absolute difference between the two cities.
+"""
+import json  
+import numpy as np
+import matplotlib.pyplot as plt # For plotting the graph
+# ----------------------------
+# Step 1: Load JSON data
+# ----------------------------
+with open("data.json","r") as file:
+    data = json.load(file)
+    print(data)
+
+# ----------------------------
+# Step 2: Define a function to compute monthly averages
+# ----------------------------
 
 """
-Definition:
-Parameter: A variable in the function definition.
+| Feature                      | Python List                   | NumPy Array (`np.array`)                |
+| ---------------------------- | ----------------------------- | --------------------------------------- |
+| **Type**                     | Built-in Python type (`list`) | NumPy type (`ndarray`)                  |
+| **Speed**                    | Slower                        | Much faster for large numerical data    |
+| **Memory Efficiency**        | Inefficient                   | More compact memory representation      |
+| **Data Types**               | Can store mixed types         | Homogeneous (all elements same type)    |
+| **Vectorized Operations**    | ❌ No (requires loops)         | ✅ Yes (element-wise operations)         |
+| **Broadcasting**             | ❌ No                          | ✅ Yes (automatic size alignment)        |
+| **Math Functions**           | Manual or via loops           | Rich library: `np.mean`, `np.sum`, etc. |
+| **Multidimensional Support** | Manual nesting                | Native support (1D, 2D, ... nD)         |
 
-Argument: The actual value passed to the function when calling it.
 """
-def myFunction1(name):
-    print(f"hello {name}")
-    #print("hello {}".format(name)) # same
+# ----------------------------
+# Step 2: Define a function to compute monthly averages
+# ----------------------------
 
-myFunction1("mahmoud")
-myFunction1("ahmad") # i reuse it with different argument
-myFunction1(["mahmoud", "ahmad"]) # the type of the parameter is defined according to the argument passed to function
+def compute_monthly_avg(city_data):
+    """
+    Takes a dictionary of months with daily temperatures and returns
+    a dictionary of average temperature per month.
+    """
+    monthly_avgs = {}
+    for month, temps in city_data.items():
+        monthly_avgs[month] = np.mean(temps) # Compute average using numpy
+    return monthly_avgs
+
+# ----------------------------
+# Step 3: Compute averages for each city
+# ----------------------------
+
+paris_avg = compute_monthly_avg(data['Paris'])
+cairo_avg = compute_monthly_avg(data['Cairo'])
+
+# ----------------------------
+# Step 4: Prepare data for plotting
+# ----------------------------
+
+# Months in the correct calendar order
+month_order = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+               "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+
+# Ensure months exist in the data and extract values in correct order
+months = [m for m in month_order if m in paris_avg]
+
+paris_values = [paris_avg[m] for m in months]
+cairo_values = [cairo_avg[m] for m in months]
+
+# ----------------------------
+# Step 5: Plotting the data
+# ----------------------------
+
+plt.figure(figsize=(10,6))  # Set figure size
+
+# Plot Paris data
+plt.plot(months, paris_values, marker='o', label='Paris', color='blue')
+
+# Plot Cairo data
+plt.plot(months, cairo_values, marker='o', label='Cairo', color='Orange')
+
+# ----------------------------
+# Step 6: Customize the plot
+# ----------------------------
+plt.title("Monthly Average Temperatures (Based on Daily Data)")
+
+plt.xlabel("Month")
+plt.ylabel("Average Temperature (°C)")
+
+plt.grid(True, linestyle='--',alpha=0.5)
+plt.legend()
+plt.tight_layout()
+
+# ----------------------------
+# Step 7: Compute deltas (absolute differences) per month
+# ----------------------------
+deltas = [abs(paris_avg[m] - cairo_avg[m]) for m in months]
+
+# ----------------------------
+# Step 8: Plot histogram (bar chart)
+# ----------------------------
+plt.figure(figsize=(10, 6))
+plt.bar(months, deltas, color='purple', alpha=0.7)
+
+# Add labels and title
+plt.title("Absolute Temperature Difference (Paris vs Cairo)")
+plt.xlabel("Month")
+plt.ylabel("Temperature Delta (°C)")
+plt.grid(axis='y', linestyle='--', alpha=0.5)
+plt.tight_layout()
 
 
-def getMaxInList(aList):
-    """ Safe Check """
-    if type(aList) != list:
-        return "the given param is not a list"
-    for elem in aList:
-        if type(elem) != int:
-            return "the list contains a least one non integer item"
-    """ Get the max logic """
-    max_in_list = aList[0]
-    for elem in aList:
-        if elem >= max_in_list:
-            max_in_list = elem
-    return max_in_list
-
-max_result = getMaxInList([-100,-2,-3])
-print(max_result)
-max_result = getMaxInList([1,2,"ll"]) # not pass
-print(max_result)
-max_result = getMaxInList(dict()) # not pass
-print(max_result)
-
-def calc(a, b):
-    return a+b, a-b # return a tuple (a+b, a-b)
-
-mysum, mydiff = calc(5,3)
-print(mysum, mydiff)
-
-myresult = calc(5,3)
-mysum = myresult[0]
-mydiff = myresult[1]
-print(mysum, mydiff)
-
-def MyExample(name="Mahmoud", surname="Ahmad"):
-    print(name, surname)
-
-MyExample()
-MyExample(name="Ahmad")
-MyExample(name="khaled", surname="Samir")
-
-def add_all(*args):
-    return sum(args)
-
-print(add_all(1,2,3,4,5))
-
-def show_stat(**kwargs):
-    if "damage" in kwargs.keys():
-        print(f"your damage is {kwargs["damage"]}")
-    if "health" in kwargs.keys():
-        print(f"your health is {kwargs["health"]}")
-
-show_stat(damage=10, health=90)
-show_stat(damage=10)
-
-a = 20 # variable global
-def ScopeFunc():
-    a = 10 # variable locale
-    print(a)
-
-ScopeFunc()
+# ----------------------------
+# Step 9: Display the plot
+# ----------------------------
+plt.show()
